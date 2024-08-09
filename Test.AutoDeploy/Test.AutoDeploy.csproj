@@ -8,6 +8,7 @@
     <Authors>Gasper Lukman</Authors>
     <Company>Echo Instruments d.o.o</Company>
     <Description>Just a testing nuget for auto deploy</Description>
+    <PackageIcon>auto-deploy-icon.png</PackageIcon>
     
     <Version>0.0.1</Version>
 
@@ -44,6 +45,7 @@
 
     <!-- Output path for the package -->
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
+
 
   </PropertyGroup>
 
