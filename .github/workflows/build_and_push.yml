@@ -1,5 +1,15 @@
-on: [ push ]
+name: "Auto nuget deploy"
 
+on:
+
+  # for running tests
+  push: 
+    branches: [ main ]
+  
+  # when tag gets created also push new nuget
+  create:
+    tags:
+      - v*
 
 jobs:
   build:
@@ -27,4 +37,5 @@ jobs:
         run: dotnet pack --configuration Release Test.AutoDeploy
 
       - name: Publish the package
+        if: startsWith(github.ref, 'refs/tags/v')
         run: dotnet nuget push Test.AutoDeploy/bin/Release/*.nupkg --source Echo --api-key ${{ secrets.NUGET_API_KEY }}
