@@ -4,8 +4,64 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Auto deploy test</Title>
+    <Authors>Gasper Lukman</Authors>
+    <Company>Echo Instruments d.o.o</Company>
+    <Description>Just a testing nuget for auto deploy</Description>
+    
+    <Version>0.0.1</Version>
+
+
+    <!-- Debugging and symbol settings -->
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>embedded</DebugType>
+
+    <!-- Deterministic build settings for consistent outputs -->
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+    <!-- Embed source files and PDB files for better debugging experience -->
+    <EmbedAllSources>true</EmbedAllSources>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+    <!-- Generate XML documentation file -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+
+    <!-- Source link settings for better debugging experience -->
+    <SourceLinkCreate>true</SourceLinkCreate>
+
+    <!-- Symbol package format and publishing settings -->
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishSymbols>true</PublishSymbols>
+
+    <!-- Include sources in the package -->
+    <IncludeSource>true</IncludeSource>
+
+    <!-- Repository information for source link -->
+    <RepositoryUrl>https://github.com/NeutralPlasma/Test.AutoDeploy</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <!-- Output path for the package -->
+    <PackageOutputPath>$(OutputPath)</PackageOutputPath>
+
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+
+    <None Update="auto-deploy-icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+
+  </ItemGroup>
+  
+  
+  
   <ItemGroup>
     <PackageReference Include="IClient.Core" Version="0.0.1" />
   </ItemGroup>

@@ -1,0 +1,30 @@
+on: [ push ]
+
+
+jobs:
+  build:
+    runs-on: "self-hosted"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Add dependencies source
+        run: dotnet nuget add source --name Echo ${{ secrets.NUGET_API_URL }}
+
+      - name: Install dependencies
+        # (|) multiline and remove \n at the end (-)
+        run: |-
+          dotnet restore Test.AutoDeploy
+
+      - name: "Build project"
+        run: dotnet build --configuration Release Test.AutoDeploy
+
+      - name: Create nuget package
+        run: dotnet pack --configuration Release Test.AutoDeploy
+
+      - name: Publish the package
+        run: dotnet nuget push Test.AutoDeploy/bin/Release/*.nupkg --source Echo --api-key ${{ secrets.NUGET_API_KEY }}
