@@ -10,7 +10,7 @@
     <Description>Just a testing nuget for auto deploy</Description>
     <PackageIcon>auto-deploy-icon.png</PackageIcon>
     
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
 
 
     <!-- Debugging and symbol settings -->
